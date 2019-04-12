@@ -11,12 +11,18 @@ import (
 func handleHelp(c echo.Context) error {
 	o := ""
 	o += "<html>"
-	o += "<body>"
+	o += `<head><script src="js\main.js" ></script></head>`
+	o += `<body onload="init()">`
 	o += "<h1>Help Page</h1>"
 	o += "<p>"
-	o += "<label>Search</label><input type='text' name='username'><br>"
-	o += "<button>Find</button>"
+	o += "<label>Search</label><input type='text' name='username'>"
+	o += "<button id='find'>Find</button>"
 	o += "</p>"
+	o += `<div id="result">
+	       Result 
+	      </div>
+		 
+		 `
 	o += "</body>"
 
 	o += "</html>"
