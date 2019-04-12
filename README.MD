@@ -1,4 +1,3 @@
 # learn-echo 
 
-* hello
-Learn about routing , route with parameter cd hel
+- __hello__ : Learn about routing , route with parameter.

@@ -6,24 +6,23 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
-func handleLogin(c echo.Context) error {
-	o := ""
-	o+="<html>"
-	o+="<body>"
-	o+="<h1>Login Page</h1>"
-	o+="<p>"
-	o+="<label>Username</label><input type='text' name='username'>"
-	o+="<label>Password</label><input type='text' name='password'>"
-	o+="</p>"
-	o+="</body>"
-	
-	o+="</html>"
 
-	
+//internal html file
+func handleHelp(c echo.Context) error {
+	o := ""
+	o += "<html>"
+	o += "<body>"
+	o += "<h1>Help Page</h1>"
+	o += "<p>"
+	o += "<label>Search</label><input type='text' name='username'><br>"
+	o += "<button>Find</button>"
+	o += "</p>"
+	o += "</body>"
+
+	o += "</html>"
+
 	return c.HTML(http.StatusOK, o)
 }
-
-
 
 func main() {
 	// Echo instance
@@ -32,24 +31,22 @@ func main() {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	
 
 	// Route => handler
 	e.GET("/about", func(c echo.Context) error {
-		
+
 		return c.String(http.StatusOK, "Hello, Indonesia!\n")
 	})
 
-	e.GET("/login", handleLogin)
+	e.GET("/help", handleHelp)
 
 	e.GET("/users/:id", func(c echo.Context) error {
 		id := c.Param("id")
 
-		return c.String(http.StatusOK, "/users/:id"+id)
+		return c.String(http.StatusOK, "Anda memanggil lewat /users/"+id)
 	})
 
-
-    e.Static("/", "web")
+	e.Static("/", "web")
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
