@@ -36,6 +36,7 @@ func main() {
 	// servers other static files
 	e.GET("/page/*", echo.WrapHandler(http.StripPrefix("/page/", assetHandler)))
 	e.GET("/site", cnt.Myhandler)
+	
 	e.Logger.Fatal(e.Start(":8181"))
 
 }
